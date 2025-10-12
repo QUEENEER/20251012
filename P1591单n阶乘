@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+#include <cstdlib>
+using namespace std;
+
+
+//sort(puch,puch+n,greater<int>());
+struct place{
+	int x,y,step;
+};
+int f[1001];
+
+
+int ans1=0,ans2=0;
+int f1[1001],f2[1001],f3[1001],f4[1001];
+int dx[4]={-1,0,1,0}, dy[4]={0,1,0,-1};
+int find(int x){
+	return x==f[x]?x:f[x]=find(f[x]);
+}
+int i0,n,j01;
+int arr[10150];
+int brr[10150];
+int crr[101];
+string str1;
+string str2;
+
+void solve1(){
+	
+	cin>>n>>j01;
+	memset(brr,0,sizeof(brr));
+	brr[0]=1;
+	int us=1;
+	while(us<=n){
+		for(int j=0;j<10000;j++){
+			brr[j]*=us;
+			
+		}
+		for(int j=0;j<10000;j++){
+			
+			if(brr[j]>9){
+				brr[j+1]+=brr[j]/10;
+				brr[j]%=10;
+			}
+		}
+		us++;
+	}
+	
+	
+	for(int i=10000;i>=0;i--){
+		if(brr[i]!=0){
+			i0=i;
+			break;
+		}
+	}
+	int ans=0;
+	for(int i=i0;i>=0;i--){
+		if(brr[i]==j01){
+			ans++;
+		}
+	}
+	cout<<ans<<'\n';
+}
+signed main(){
+	int k;
+	cin>>k;
+	for(int i=k;i>0;i--){
+		solve1();
+	}
+	
+	
+}
