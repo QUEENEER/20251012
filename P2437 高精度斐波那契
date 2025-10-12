@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+#include <cstdlib>
+using namespace std;
+
+int m,n;
+string solve1(string str1,string str2){
+	int length=max(str1.size(),str2.size());
+	int q=0;
+	string c="";
+	while(str1.size()<length){
+		str1='0'+str1;
+	}
+	while(str2.size()<length){
+		str2='0'+str2;
+	}
+	for(int i=length-1;i>=0;i--){
+		int t1=str1[i]-'0';
+		int t2=str2[i]-'0';
+		int t=t1+t2+q;
+		q=t/10;
+		char ch=t%10+'0';
+		c=ch+c;
+	}
+	if(q!=0){
+		c='1'+c;
+	}
+	return c;
+}
+signed main(){
+	cin>>m>>n;
+	string arr[5001];
+	arr[1]="1";
+	arr[2]="2";
+	
+	for(int i=3;i<=n-m;i++){
+		arr[i]=solve1(arr[i-1],arr[i-2]);
+	}
+	cout<<arr[n-m]<<endl;
+}
