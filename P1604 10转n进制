@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+#include <cstdlib>
+using namespace std;
+
+
+//sort(puch,puch+n,greater<int>());
+struct place{
+	int x,y,step;
+};
+int f[1001];
+
+
+int ans1=0,ans2=0;
+int f1[1001],f2[1001],f3[1001],f4[1001];
+int dx[4]={-1,0,1,0}, dy[4]={0,1,0,-1};
+int find(int x){
+	return x==f[x]?x:f[x]=find(f[x]);
+}
+int i0,n,j01;
+int arr[10150];
+int brr[10150];
+int crr[101];
+string str1;
+string str2;
+string str3;
+int charToNum(char c) {
+	if (c >= '0' && c <= '9') {
+		return c - '0';
+	} else { 
+		return c - 'A' + 10;
+	}
+}
+
+
+char numToChar(int num) {
+	if (num >= 0 && num <= 9) {
+		return num + '0';
+	} else { 
+		return num - 10 + 'A';
+	}
+}
+void solve1(){
+	
+	cin>>n;
+	cin>>str1>>str2;
+	int m=0;
+	int p=max(str1.size(),str2.size());
+	reverse(str1.begin(),str1.end());
+	reverse(str2.begin(),str2.end());
+	for(int i=0;i<p;i++){
+		int num1=(i<str1.size())?charToNum(str1[i]):0;
+		int num2=(i<str2.size())?charToNum(str2[i]):0;
+		str3.push_back(numToChar((num1+num2+m)%n));
+		m=(num1+num2+m)/n;
+	}
+	if(m>0){
+		str3.push_back(numToChar(m));
+	}
+	reverse(str3.begin(),str3.end());
+	cout<<str3;
+}
+signed main(){
+	
+	solve1();
+	
+}
