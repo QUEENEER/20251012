@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#include <cstdlib>
+using namespace std;
+
+
+//sort(puch,puch+n,greater<int>());
+struct place{
+	int x,y,step;
+};
+int f[1001];
+
+int n=1,m=0;
+int ans1=0,ans2=0;
+int f1[1001],f2[1001],f3[1001],f4[1001];
+int dx[4]={-1,0,1,0}, dy[4]={0,1,0,-1};
+int find(int x){
+	return x==f[x]?x:f[x]=find(f[x]);
+}
+char arr[101];
+char brr[101];
+int crr[101];
+string str1;
+string str2;
+
+void solve1(){
+    cin>>str1>>str2;
+	int length=max(str1.size(),str2.size());
+	int q=0;
+	string c="";
+	while(str1.size()<length){
+		str1='0'+str1;
+	}
+	while(str2.size()<length){
+		str2='0'+str2;
+	}
+	for(int i=length-1;i>=0;i--){
+		int t1=str1[i]-'0';
+		int t2=str2[i]-'0';
+		int t=t1+t2+q;
+		q=t/10;
+		char ch=t%10+'0';
+		c=ch+c;
+	}
+	if(q!=0){
+		c='1'+c;
+	}
+	cout<<c;
+}
+signed main(){
+	
+	solve1();
+	
+}
