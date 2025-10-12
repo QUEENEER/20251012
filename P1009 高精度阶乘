@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+#include <cstdlib>
+using namespace std;
+
+
+//sort(puch,puch+n,greater<int>());
+struct place{
+	int x,y,step;
+};
+int f[1001];
+
+
+int ans1=0,ans2=0;
+int f1[1001],f2[1001],f3[1001],f4[1001];
+int dx[4]={-1,0,1,0}, dy[4]={0,1,0,-1};
+int find(int x){
+	return x==f[x]?x:f[x]=find(f[x]);
+}
+int i0,n,j;
+int arr[1015];
+int brr[1015];
+int crr[101];
+string str1;
+string str2;
+
+void solve1(){
+	cin>>n;
+	arr[0]=brr[0]=1;
+	for(int i=2;i<=n;i++){
+		for(int j=0;j<100;j++){
+			brr[j]*=i;
+		}
+		for(int j=0;j<100;j++){
+			if(brr[j]>9){
+				brr[j+1]+=brr[j]/10;
+				brr[j]%=10;
+			}
+		}
+		for(int j=0;j<100;j++){
+			arr[j]+=brr[j];
+			if(arr[j]>9){
+				arr[j+1]+=arr[j]/10;
+				arr[j]%=10;
+			}
+		}
+	}
+	for(int i=100;i>=0;i--){
+		if(arr[i]!=0){
+			i0=i;
+			break;
+		}
+	}
+	for(int i=i0;i>=0;i--){
+		cout<<arr[i];
+	}
+}
+signed main(){
+	
+	solve1();
+	
+}
